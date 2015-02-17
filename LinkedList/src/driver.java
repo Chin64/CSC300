@@ -10,7 +10,7 @@ public class driver {
 		ll.addEnd(4);
 		ll.addFront(6);
 		ll.display();
-		ll.addAtIndex(8, 4);
+		ll.addAtIndex(8, 0);
 		ll.display();
 		
 		//GitHub Attempt

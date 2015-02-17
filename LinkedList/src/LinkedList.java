@@ -59,9 +59,9 @@ public class LinkedList
 		Node n = head;
 		
 		//if there's no head, make one
-		if(head == null)
+		if(index <= 0)
 		{
-			head = n;
+			this.addFront(payload);
 		}
 		//if there is a head
 		else
