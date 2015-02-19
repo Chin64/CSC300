@@ -3,13 +3,15 @@ public class LinkedList
 {
 	private Node head;
 	private int count;
+	
 	public LinkedList()
-
 	{
 		this.head = null;
 		this.count = 0;
+		
 	}
 
+	 
 	public int get(int index)
 	{
 		int count = this.count();
@@ -49,6 +51,7 @@ public class LinkedList
 				currNode = currNode.getNextNode();
 			}
 			System.out.println(currNode.getPayload() + "-> null");
+			System.out.println(count);
 		}
 	}
 
@@ -75,9 +78,8 @@ public class LinkedList
 			//don't forget the rest of the list!
 	        temp.setNextNode(n.getNextNode());
 	        n.setNextNode(temp);
+	        this.count++;
 	    }
-		this.count++;
-		
 	}
 
 	public void addFront(int payload)
@@ -86,13 +88,14 @@ public class LinkedList
 		if(head == null)
 		{
 			head = n;
+			this.count++;
 		}
 		else
 		{
 			n.setNextNode(head);
 			head = n;
+			this.count++;
 		}
-		this.count++;
 	}
 
 	public void addEnd(int payload)
@@ -114,5 +117,43 @@ public class LinkedList
 			currNode.setNextNode(n);
 		}
 		this.count++;
+	}
+	
+	public int removeEnd() throws Exception
+	{
+		if(head == null)
+		{
+			throw new Exception("Can Not Remove End: Empty List");
+		}
+		else if(this.count == 1)
+		{
+			return this.removeFront();
+		}
+		else
+		{
+			Node currNode = head;
+			
+			for (int i = 0; i < count - 2; i++)
+			{
+				currNode = currNode.getNextNode();
+			}
+			
+			currNode.setNextNode(null);
+			this.count--;
+			return currNode.getPayload();
+		}
+	}
+
+	public int removeFront() throws Exception
+	{
+		if(head == null)
+		{
+			throw new Exception("Can Not Remove Front: Empty List");
+		}
+		Node currNode = head;
+		head = head.getNextNode();
+		currNode.setNextNode(null);
+		this.count--;
+		return currNode.getPayload();
 	}
 }

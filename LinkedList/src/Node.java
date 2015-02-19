@@ -3,7 +3,7 @@ public class Node
 {
 	private Node nextNode;
 	private int payload;
-
+	
 	public Node(int payload)
 	{
 		this.payload = payload;

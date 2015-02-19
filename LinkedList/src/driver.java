@@ -1,7 +1,7 @@
 
 public class driver {
 
-	public static void main(String[] args) 
+	public static void main(String[] args) throws Exception 
 	{
 		LinkedList ll = new LinkedList();
 		ll.addFront(9);
@@ -12,9 +12,11 @@ public class driver {
 		ll.display();
 		ll.addAtIndex(8, 0);
 		ll.display();
-		
-		//GitHub Attempt
-		
+		ll.removeFront();
+		ll.display();
+		ll.removeEnd();
+		ll.display();
+		//https://github.com/Chin64/CSC300
 	}
 
 }
