@@ -121,39 +121,93 @@ public class LinkedList
 	
 	public int removeEnd() throws Exception
 	{
+		//if there's an empty list
 		if(head == null)
 		{
 			throw new Exception("Can Not Remove End: Empty List");
 		}
+		//if there's only one number in the list
 		else if(this.count == 1)
 		{
 			return this.removeFront();
 		}
+		//removing the last node
 		else
 		{
+			//initialize variables
 			Node currNode = head;
 			
+			//traverse the list
 			for (int i = 0; i < count - 2; i++)
 			{
 				currNode = currNode.getNextNode();
 			}
 			
+			// reroute the pointer, leave last node for garbage man
 			currNode.setNextNode(null);
+			
+			//edit count
 			this.count--;
+			
+			//return the bad node
 			return currNode.getPayload();
 		}
 	}
 
 	public int removeFront() throws Exception
 	{
+		//if there's an empty list
 		if(head == null)
 		{
 			throw new Exception("Can Not Remove Front: Empty List");
 		}
+		
+		//initialize variable
 		Node currNode = head;
+		
+		//reroute the pointers, forget first node
 		head = head.getNextNode();
 		currNode.setNextNode(null);
+		
+		//edit count
 		this.count--;
+		
+		//return bad node
 		return currNode.getPayload();
+	}
+	
+	public int removeAtIndex(int index) throws Exception
+	{
+		//if there's an empty list
+		if(head == null)
+		{
+			throw new Exception("Can Not Remove End: Empty List");
+		}
+		//if there's only one number in the list
+		else if(this.count == 1 || index == 0)
+		{
+			return this.removeFront();
+		}
+		//remove at given index
+		else
+		{
+			//initialize variables
+			Node currNode = head;
+
+			//traverse list
+			for(int i = 0; i < index - 2; i++)
+			{
+				currNode = currNode.getNextNode();
+			}
+
+			//skip over the node needing to be deleted
+			currNode.setNextNode(currNode.getNextNode().getNextNode());
+
+			//edit count
+			this.count--;
+
+			//return dead node
+			return currNode.getPayload();
+		}
 	}
 }

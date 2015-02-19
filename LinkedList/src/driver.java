@@ -8,6 +8,7 @@ public class driver {
 		ll.addEnd(3);
 		ll.addEnd(7);
 		ll.addEnd(4);
+		ll.addEnd(8);
 		ll.addFront(6);
 		ll.display();
 		ll.addAtIndex(8, 0);
@@ -15,6 +16,8 @@ public class driver {
 		ll.removeFront();
 		ll.display();
 		ll.removeEnd();
+		ll.display();
+		ll.removeAtIndex(4);
 		ll.display();
 		//https://github.com/Chin64/CSC300
 	}
