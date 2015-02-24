@@ -3,18 +3,19 @@ public class LinkedList
 {
 	private Node head;
 	private int count;
+	private Node tail;
 	
 	public LinkedList()
 	{
 		this.head = null;
 		this.count = 0;
-		
+		this.tail = null;
 	}
-
-	 
+ 
 	public int get(int index)
 	{
 		int count = this.count();
+		
 		if(index >= count || index < 0)
 		{
 			System.out.println("Illegal Index");
@@ -27,6 +28,7 @@ public class LinkedList
 			{
 				curr = curr.getNextNode();
 			}
+		
 			return curr.getPayload();
 		}
 	}
@@ -51,8 +53,36 @@ public class LinkedList
 				currNode = currNode.getNextNode();
 			}
 			System.out.println(currNode.getPayload() + "-> null");
-			System.out.println(count);
+			//System.out.println(tail.getPayload());
 		}
+	}
+
+	public void displayBackwards()
+	{
+		LinkedList temp = new LinkedList();
+		for(int i = 0; i < this.count; i++)
+		{
+			temp.addFront(this.get(i));
+		}
+		temp.display();
+	}
+	
+	public Node getTail()
+	{
+		//initialize variable
+		Node temp = head;
+		
+		//search linked list for end
+		for (int i = 0; i < count - 1; i++)
+		{
+			//set temp equal to the next node in the list until the end
+			temp = temp.getNextNode();
+			
+			//set the tail variable
+			tail = temp;
+		}
+		//return tail
+		return tail;
 	}
 
 	public void addAtIndex(int payload, int index)
@@ -72,7 +102,7 @@ public class LinkedList
 			//search list for given index
 			for (int i = 1; i < index && n.getNextNode() != null; i++) 
 			{
-	            n = n.getNextNode();
+	            n = n.getNextNode();  
 	        }
 			
 			//don't forget the rest of the list!
@@ -84,18 +114,31 @@ public class LinkedList
 
 	public void addFront(int payload)
 	{
+		//Initialize variable
 		Node n = new Node(payload);
+		
+		//Adding to the front, if there's no head
 		if(head == null)
 		{
 			head = n;
 			this.count++;
 		}
+		
+		//if there is a head
 		else
 		{
+			//set the pointers, insert desired head value
 			n.setNextNode(head);
 			head = n;
+			n.setPreviousNode(n);
 			this.count++;
 		}
+		
+		if(tail == null)
+		{
+			tail = n;
+		}
+		
 	}
 
 	public void addEnd(int payload)
@@ -112,7 +155,10 @@ public class LinkedList
 			while(currNode.getNextNode() != null)
 			{
 				currNode = currNode.getNextNode();
+				tail = currNode;
+
 			}
+			
 			//currNode will point to the very last Node in the list
 			currNode.setNextNode(n);
 		}
@@ -135,13 +181,7 @@ public class LinkedList
 		else
 		{
 			//initialize variables
-			Node currNode = head;
-			
-			//traverse the list
-			for (int i = 0; i < count - 2; i++)
-			{
-				currNode = currNode.getNextNode();
-			}
+			Node currNode = tail;
 			
 			// reroute the pointer, leave last node for garbage man
 			currNode.setNextNode(null);
@@ -210,4 +250,6 @@ public class LinkedList
 			return currNode.getPayload();
 		}
 	}
+	
+	
 }

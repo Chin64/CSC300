@@ -3,6 +3,7 @@ public class Node
 {
 	private Node nextNode;
 	private int payload;
+	private Node previousNode;
 	
 	public Node(int payload)
 	{
@@ -23,6 +24,16 @@ public class Node
 	public int getPayload() 
 	{
 		return payload;
+	}
+
+	public Node getPreviousNode() 
+	{
+		return this.previousNode;
+	}
+
+	public void setPreviousNode(Node previousNode) 
+	{
+		this.previousNode = previousNode;
 	}
 
 }
