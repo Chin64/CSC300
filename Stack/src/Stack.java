@@ -1,80 +1,68 @@
 
 public class Stack 
 {
-	private Node head;
-	private int count;
+	private Node top;
 	
-	public void display()
+	
+	public Stack()
 	{
-		if(head == null)
-		{
-			System.out.println("Empty List");
-		}
-		else
-		{
-			Node currNode = this.head;
-			while(currNode.getNextNode() != null)
-			{
-				System.out.print(currNode.getPayload() + "->");
-				currNode = currNode.getNextNode();
-			}
-			System.out.println(currNode.getPayload() + "-> null");
-		}
+		this.top = null;
+	}
+	
+	public boolean isEmpty()
+	{
+		return this.top == null;
 	}
 	
 	public void push(int payload)
 	{
-		//Initialize variable
 		Node n = new Node(payload);
-		
-		//Adding to the front, if there's no head
-		if(head == null)
+		if(this.top == null)
 		{
-			head = n;
-			this.count++;
+			this.top = n;
 		}
-		
-		//if there is a head
 		else
 		{
-			//insert desired head value
-			n.setNextNode(head);
-			head = n;
-			
-			this.count++;
+			n.setNextNode(this.top);
+			this.top = n;
 		}
+
 	}
 	
 	public int pop() throws Exception
 	{
-		//if there's an empty list
-		if(head == null)
+		if(this.top == null)
 		{
-			throw new Exception("Can Not Remove Front: Empty List");
+			throw new Exception("Emtpy Stack!!! Cry More");
 		}
-		
-		//initialize variable
-		Node currNode = head;
-		
-		//reroute the pointers, forget first node
-		head = head.getNextNode();
-		currNode.setNextNode(null);
-		
-		//edit count
-		this.count--;
-		
-		//return bad node
-		return currNode.getPayload();
+		else
+		{
+			int valToReturn = this.top.getPayload();
+			this.top = this.top.getNextNode();
+			return valToReturn;
+		}
 	}
 	
-	public void peek()
+	public int peek() throws Exception
 	{
-		//set the head of the stack
-		Node n = head;
-		
-		//display the head of the stack
-		System.out.println(n.getPayload());
-		
+		if(this.top == null)
+		{
+			throw new Exception("Emtpy Stack!!! Cry More");
+		}
+		else
+		{
+			return this.top.getPayload();
+		}
 	}
+	/*public int sum() throws Exception
+	 {
+			 int sum = 0;
+
+			 while (!this.theStack.isEmpty())
+			 {
+				 sum = this.theStack.pop();
+			 }
+			 return sum;
+	 }*/
 
 }
