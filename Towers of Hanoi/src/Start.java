@@ -5,6 +5,7 @@ public class Start
 	private Tower tower1;
 	private Tower tower2;
 	private Tower tower3;
+	private Disc discToMove;
 	
 	public Start()
 	{
@@ -37,8 +38,37 @@ public class Start
 				tower2.display();
 				System.out.println("****");
 				tower3.display();
+				System.out.println("****");
 			}
-			
+			else if(val.equalsIgnoreCase("move"))
+			{
+				System.out.println("Enter Tower Number to start from to: => ");
+				Scanner input2 = new Scanner(System.in);
+				String startTower = input2.nextLine().trim();
+				
+				System.out.println("Enter Tower Number to move to: => ");
+				Scanner input3 = new Scanner(System.in);
+				String endTower = input3.nextLine().trim();
+				
+				if(startTower.equalsIgnoreCase("tower1") && endTower.equalsIgnoreCase("tower2"))
+				{
+					discToMove = tower1.peek();
+					tower1.removeDisc();
+					tower2.addDisc(discToMove);
+				}
+				else if(startTower.equalsIgnoreCase("tower1") && endTower.equalsIgnoreCase("tower3"));
+				{
+					discToMove = tower1.peek();
+					tower1.removeDisc();
+					tower3.addDisc(discToMove);
+				}
+				//else if(startTower.equalsIgnoreCase("tower2") && endTower.equalsIgnoreCase("tower3"));
+				{
+					discToMove = tower1.peek();
+					tower1.removeDisc();
+					tower3.addDisc(discToMove);
+				}
+			}
 		}
 	}
 }

@@ -2,14 +2,17 @@
 public class Tower 
 {
 	private Disc top;
+	
 	public Tower()
 	{
 		top = null;
 	}
+	
 	public Disc peek()
 	{
 		return top;
 	}
+	
 	public Disc removeDisc()
 	{
 		Disc nodeToReturn = top;
@@ -19,6 +22,7 @@ public class Tower
 		}
 		return nodeToReturn;
 	}
+	
 	public boolean addDisc(Disc d)
 	{
 		if(this.top == null)
@@ -37,6 +41,7 @@ public class Tower
 			return false;
 		}
 	}
+	
 	public void display()
 	{
 		if(this.top == null)
