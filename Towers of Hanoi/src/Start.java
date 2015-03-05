@@ -62,11 +62,23 @@ public class Start
 					tower1.removeDisc();
 					tower3.addDisc(discToMove);
 				}
-				//else if(startTower.equalsIgnoreCase("tower2") && endTower.equalsIgnoreCase("tower3"));
+				else if(startTower.equalsIgnoreCase("tower2") && endTower.equalsIgnoreCase("tower3"));
 				{
-					discToMove = tower1.peek();
-					tower1.removeDisc();
+					discToMove = tower2.peek();
+					tower2.removeDisc();
 					tower3.addDisc(discToMove);
+				}
+				else if(startTower.equalsIgnoreCase("tower3") && endTower.equalsIgnoreCase("tower2"));
+				{
+					discToMove = tower3.peek();
+					tower3.removeDisc();
+					tower2.addDisc(discToMove);
+				}
+				else if(startTower.equalsIgnoreCase("tower3") && endTower.equalsIgnoreCase("tower1"));
+				{
+					discToMove = tower3.peek();
+					tower3.removeDisc();
+					tower1.addDisc(discToMove);
 				}
 			}
 		}
