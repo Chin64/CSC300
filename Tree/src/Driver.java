@@ -11,6 +11,7 @@ public class Driver
 		bt.add(7);
 		bt.add(1);
 		bt.add(0);
+		bt.add(4);
 		bt.add(15);
 		bt.add(9);
 		bt.add(-4);

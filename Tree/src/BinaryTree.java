@@ -53,6 +53,12 @@ public class BinaryTree
 				System.out.println(temp.getPayload());
 			}
 			
+			if(root.getRightNode().getLeftNode().getRightNode() != null)
+			{
+				temp = root.getRightNode().getLeftNode().getRightNode();
+				System.out.println(temp.getPayload());
+			}
+			
 			temp = root;
 			while(temp.getRightNode() != null)
 			{
@@ -102,6 +108,12 @@ public class BinaryTree
 			if(root.getRightNode().getLeftNode() != null)
 			{
 				temp = root.getRightNode().getLeftNode();
+				System.out.println(temp.getPayload());
+			}
+			
+			if(root.getRightNode().getLeftNode().getRightNode() != null)
+			{
+				temp = root.getRightNode().getLeftNode().getRightNode();
 				System.out.println(temp.getPayload());
 			}
 			
