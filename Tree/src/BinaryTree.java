@@ -47,16 +47,19 @@ public class BinaryTree
 				count--;
 			}
 			
-			if(root.getRightNode() != null)
+			if(root.getRightNode().getLeftNode() != null)
 			{
-				temp = root.getRightNode();
+				temp = root.getRightNode().getLeftNode();
 				System.out.println(temp.getPayload());
 			}
+			
+			temp = root;
 			while(temp.getRightNode() != null)
 			{
 				temp = temp.getRightNode();
 				System.out.println(temp.getPayload());
 			}
+			
 		}
 	}
 	
@@ -95,6 +98,13 @@ public class BinaryTree
 				System.out.println(temp.getPayload());
 				count--;
 			}
+			
+			if(root.getRightNode().getLeftNode() != null)
+			{
+				temp = root.getRightNode().getLeftNode();
+				System.out.println(temp.getPayload());
+			}
+			
 			temp = root;
 			while(temp.getRightNode() != null)
 			{
@@ -102,6 +112,7 @@ public class BinaryTree
 				System.out.println(temp.getPayload());
 			}
 		}
+		
 	}
 	
 	public void add(int value)
