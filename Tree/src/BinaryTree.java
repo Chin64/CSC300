@@ -6,17 +6,61 @@ public class BinaryTree
 	private int payload;
 	private BinaryTree leftTree;
 	private BinaryTree rightTree;
+	
 	public BinaryTree()
 	{
 		this.isEmpty = true;
 		this.leftTree = null;
 		this.rightTree = null;
 	}
-	//public boolean search(int value)
+	
+	public boolean search(int value)
 	{
 		
+		if(this.payload == value)
+		{
+			System.out.println(value + " found in the tree");
+			return true;
+		}
+		else if(value < this.payload)
+		{
+			if(this.leftTree != null)
+			{
+				if(this.leftTree.payload == value)
+				{
+					System.out.println(value + " found in the tree");
+					return true;
+				}
+				else
+				{
+					this.leftTree.search(value);
+					return true;
+				}
+			}
+		}
+		else if(value > this.payload)
+		{
+			if(this.rightTree != null)
+			{
+				if(this.rightTree.payload == value)
+				{
+					System.out.println(value + " found in the tree");
+					return true;
+				}
+				else
+				{
+					this.rightTree.search(value);
+					return true;
+				}
+			}
+		}
+		
+		System.out.println("The value was not found.");
+		return false;
 	}
+	
 	private void visitInOrder()
+
 	{
 		if(this.leftTree != null)
 		{
@@ -28,6 +72,7 @@ public class BinaryTree
 			this.rightTree.visitInOrder();
 		}
 	}
+	
 	public void displayInOrder()
 	{
 		System.out.println("**** In Order ****");
@@ -40,6 +85,7 @@ public class BinaryTree
 			this.visitInOrder();
 		}
 	}
+	
 	private void visitPreOrder()
 	{
 		System.out.println(this.payload);
@@ -52,6 +98,7 @@ public class BinaryTree
 			this.rightTree.visitPreOrder();
 		}
 	}
+	
 	public void displayPreOrder()
 	{
 		System.out.println("**** Pre Order ****");
@@ -64,6 +111,7 @@ public class BinaryTree
 			this.visitPreOrder();
 		}
 	}
+	
 	private void visitPostOrder()
 	{
 		if(this.leftTree != null)
@@ -76,6 +124,7 @@ public class BinaryTree
 		}
 		System.out.println(this.payload);
 	}
+	
 	public void displayPostOrder()
 	{
 		System.out.println("**** Post Order ****");
@@ -88,6 +137,7 @@ public class BinaryTree
 			this.visitPostOrder();
 		}
 	}
+	
 	public void add(int value)
 	{
 		if(this.isEmpty)
@@ -104,6 +154,7 @@ public class BinaryTree
 					this.leftTree = new BinaryTree();
 				}
 				this.leftTree.add(value);
+				this.isEmpty = false;
 			}
 			else
 			{
@@ -112,7 +163,9 @@ public class BinaryTree
 					this.rightTree = new BinaryTree();
 				}
 				this.rightTree.add(value);
+				this.isEmpty = false;
 			}
 		}
 	}
+	
 }
