@@ -1,15 +1,18 @@
 
 public class BinaryTree 
-{//private Node root;
+{
+	//private Node root;
 	private boolean isEmpty;
 	private int payload;
 	private BinaryTree leftTree;
 	private BinaryTree rightTree;
 	private int depth;
+	
 	public BinaryTree()
 	{
 		this(0);
 	}
+	
 	private BinaryTree(int depth)
 	{
 		this.isEmpty = true;
@@ -17,6 +20,7 @@ public class BinaryTree
 		this.rightTree = null;
 		this.depth = depth;
 	}
+	
 	public boolean search(int value)
 	{
 		//return true if value is in the tree
@@ -60,6 +64,7 @@ public class BinaryTree
 			}
 		}
 	}
+	
 	private void visitInOrder()
 	{
 		if(this.leftTree != null)
@@ -72,6 +77,7 @@ public class BinaryTree
 			this.rightTree.visitInOrder();
 		}
 	}
+	
 	public void displayInOrder()
 	{
 		System.out.println("**** In Order ****");
@@ -84,6 +90,7 @@ public class BinaryTree
 			this.visitInOrder();
 		}
 	}
+	
 	private void visitPreOrder()
 	{
 		System.out.println(this.payload);
@@ -96,6 +103,9 @@ public class BinaryTree
 			this.rightTree.visitPreOrder();
 		}
 	}
+	
+	
+	
 	public void displayPreOrder()
 	{
 		System.out.println("**** Pre Order ****");
@@ -108,6 +118,7 @@ public class BinaryTree
 			this.visitPreOrder();
 		}
 	}
+	
 	private void visitPostOrder()
 	{
 		if(this.leftTree != null)
@@ -120,6 +131,8 @@ public class BinaryTree
 		}
 		System.out.println(this.payload);
 	}
+	
+	
 	public void displayPostOrder()
 	{
 		System.out.println("**** Post Order ****");
@@ -132,6 +145,7 @@ public class BinaryTree
 			this.visitPostOrder();
 		}
 	}
+	
 	private int getMaxDepth()
 	{
 		if(this.leftTree == null && this.rightTree == null)
@@ -151,6 +165,7 @@ public class BinaryTree
 			return Math.max(this.leftTree.getMaxDepth(), this.rightTree.getMaxDepth());
 		}
 	}
+	
 	public boolean isBalanced()
 	{
 		if(this.isEmpty)
@@ -167,6 +182,22 @@ public class BinaryTree
 			return Math.abs(currMaxLeftDepth - currMaxRightDepth) <= 1;
 		}
 	}
+	
+	public boolean isBalancedForAdd()
+	{
+		if(this.isEmpty)
+		{
+			return true;
+		}
+		else
+		{
+			//boolean-expr?true-val:false-val
+			int currMaxLeftDepth = this.leftTree == null?0:this.leftTree.getMaxDepth();
+			int currMaxRightDepth = this.rightTree == null?0:this.rightTree.getMaxDepth();
+			return Math.abs(currMaxLeftDepth - currMaxRightDepth) <= 1;
+		}
+	}
+	
 	public void add(int value)
 	{
 		if(this.isEmpty)
@@ -192,6 +223,48 @@ public class BinaryTree
 				}
 				this.rightTree.add(value);
 			}
+		}
+		
+		if(isBalancedForAdd() == false)
+		{
+			BinaryTree temp;
+			
+			//left-left case
+			if(this.leftTree != null)
+			{
+				temp = this.leftTree.leftTree;
+				this.leftTree.leftTree = this.rightTree;
+				this.rightTree = temp;
+			}
+			//right-right case
+			else if(this.rightTree != null)
+			{
+				temp = this.rightTree.rightTree;
+				this.rightTree.rightTree = this.leftTree;
+				this.leftTree = temp;
+			}
+			//left-right case
+			else if(this.leftTree != null)
+			{
+				temp = this.leftTree.rightTree;
+				this.leftTree.rightTree = this.rightTree;
+				this.rightTree = temp;
+				temp = this.leftTree;
+				this.leftTree = this.rightTree;
+				this.rightTree = temp;
+			}
+			//right-left case
+			else if(this.rightTree != null)
+			{
+				temp = this.rightTree.leftTree;
+				this.rightTree.leftTree = this.leftTree;
+				this.leftTree = temp;
+				temp = this.rightTree;
+				this.rightTree = this.leftTree;
+				this.leftTree = temp;
+			}
+			
+			
 		}
 	}
 }
