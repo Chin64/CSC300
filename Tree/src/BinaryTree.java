@@ -1,78 +1,77 @@
 
 public class BinaryTree 
-{
-	//private Node root;
+{//private Node root;
 	private boolean isEmpty;
 	private int payload;
 	private BinaryTree leftTree;
 	private BinaryTree rightTree;
-	
+	private int depth;
 	public BinaryTree()
+	{
+		this(0);
+	}
+	private BinaryTree(int depth)
 	{
 		this.isEmpty = true;
 		this.leftTree = null;
 		this.rightTree = null;
+		this.depth = depth;
 	}
-	
 	public boolean search(int value)
 	{
-		
-		if(this.payload == value)
+		//return true if value is in the tree
+		//return false if value is not in the tree
+		if(this.isEmpty)
 		{
-			System.out.println(value + " found in the tree");
-			return true;
+			return false;
 		}
-		else if(value < this.payload)
+		else
 		{
-			if(this.leftTree != null)
+			if(this.payload == value)
 			{
-				if(this.leftTree.payload == value)
+				return true;
+			}
+			else
+			{
+				if(value < payload)
 				{
-					System.out.println(value + " found in the tree");
-					return true;
+					//check the left
+					if(this.leftTree == null)
+					{
+						return false;
+					}
+					else
+					{
+						return this.leftTree.search(value);
+					}
 				}
 				else
 				{
-					this.leftTree.search(value);
-					return true;
+					//check the right
+					if(this.rightTree == null)
+					{
+						return false;
+					}
+					else
+					{
+						return this.rightTree.search(value);
+					}
 				}
 			}
 		}
-		else if(value > this.payload)
-		{
-			if(this.rightTree != null)
-			{
-				if(this.rightTree.payload == value)
-				{
-					System.out.println(value + " found in the tree");
-					return true;
-				}
-				else
-				{
-					this.rightTree.search(value);
-					return true;
-				}
-			}
-		}
-		
-		System.out.println("The value was not found.");
-		return false;
 	}
-	
 	private void visitInOrder()
-
 	{
 		if(this.leftTree != null)
 		{
 			this.leftTree.visitInOrder();
 		}
-		System.out.println(this.payload);
+		System.out.println(this.payload + " : " + this.depth);
 		if(this.rightTree != null)
 		{
 			this.rightTree.visitInOrder();
 		}
 	}
-	
 	public void displayInOrder()
 	{
 		System.out.println("**** In Order ****");
@@ -85,7 +84,6 @@ public class BinaryTree
 			this.visitInOrder();
 		}
 	}
-	
 	private void visitPreOrder()
 	{
 		System.out.println(this.payload);
@@ -98,7 +96,6 @@ public class BinaryTree
 			this.rightTree.visitPreOrder();
 		}
 	}
-	
 	public void displayPreOrder()
 	{
 		System.out.println("**** Pre Order ****");
@@ -111,7 +108,6 @@ public class BinaryTree
 			this.visitPreOrder();
 		}
 	}
-	
 	private void visitPostOrder()
 	{
 		if(this.leftTree != null)
@@ -124,7 +120,6 @@ public class BinaryTree
 		}
 		System.out.println(this.payload);
 	}
-	
 	public void displayPostOrder()
 	{
 		System.out.println("**** Post Order ****");
@@ -137,7 +132,41 @@ public class BinaryTree
 			this.visitPostOrder();
 		}
 	}
-	
+	private int getMaxDepth()
+	{
+		if(this.leftTree == null && this.rightTree == null)
+		{
+			return this.depth;
+		}
+		else if(this.leftTree == null)
+		{
+			return this.rightTree.getMaxDepth();
+		}
+		else if(this.rightTree == null)
+		{
+			return this.leftTree.getMaxDepth();
+		}
+		else
+		{
+			return Math.max(this.leftTree.getMaxDepth(), this.rightTree.getMaxDepth());
+		}
+	}
+	public boolean isBalanced()
+	{
+		if(this.isEmpty)
+		{
+			return true;
+		}
+		else
+		{
+			//boolean-expr?true-val:false-val
+			int currMaxLeftDepth = this.leftTree == null?0:this.leftTree.getMaxDepth();
+			int currMaxRightDepth = this.rightTree == null?0:this.rightTree.getMaxDepth();
+			System.out.println("Max Left = " + currMaxLeftDepth);
+			System.out.println("Max Right = " + currMaxRightDepth);
+			return Math.abs(currMaxLeftDepth - currMaxRightDepth) <= 1;
+		}
+	}
 	public void add(int value)
 	{
 		if(this.isEmpty)
@@ -151,21 +180,18 @@ public class BinaryTree
 			{
 				if(this.leftTree == null)
 				{
-					this.leftTree = new BinaryTree();
+					this.leftTree = new BinaryTree(this.depth+1);
 				}
 				this.leftTree.add(value);
-				this.isEmpty = false;
 			}
 			else
 			{
 				if(this.rightTree == null)
 				{
-					this.rightTree = new BinaryTree();
+					this.rightTree = new BinaryTree(this.depth+1);
 				}
 				this.rightTree.add(value);
-				this.isEmpty = false;
 			}
 		}
 	}
-	
 }

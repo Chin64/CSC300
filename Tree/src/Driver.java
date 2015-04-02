@@ -17,10 +17,10 @@ public class Driver
 		bt.add(-4);
 		bt.add(1630);
 		bt.displayInOrder();
-		bt.displayPostOrder();
-		bt.displayPreOrder();
 		
-		bt.search(1630);
+		System.out.println(bt.search(1630));
+		
+		System.out.println(bt.isBalanced());
 	}
 
 }
