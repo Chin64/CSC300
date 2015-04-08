@@ -7,16 +7,14 @@ public class Driver
 	{
 		Random r = new Random();
 		BinaryTree bt = new BinaryTree();
-		int test = 0;
-		while(test != 10)
+
+		for(int i = 0; i < 5000; i++)
 		{
-			for(int i = 0; i < 5000; i++)
-			{
-				bt.add(r.nextInt());
-			}
-			System.out.println(bt.isBalanced());
-			test++;
+			bt.add(r.nextInt());
 		}
+		System.out.println(bt.isBalanced());
+		
+
 	}
 
 }
