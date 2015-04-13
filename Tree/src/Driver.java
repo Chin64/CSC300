@@ -14,7 +14,6 @@ public class Driver
 		}
 		System.out.println(bt.isBalanced());
 		
-
 	}
 
 }
