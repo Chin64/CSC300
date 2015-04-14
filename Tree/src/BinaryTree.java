@@ -41,17 +41,18 @@ public class BinaryTree
 			BinaryTree pivRT = null;
 			BinaryTree pivP = null;
 			BinaryTree pivGP = null;
+			
 			if(pivot.rightTree != null)
 			{
 				pivRT = pivot.rightTree;
 				pivot.rightTree = null;
 			}
 			pivP = pivot.parent;
-			pivGP = (pivP == null?null:pivP.parent.parent);
+			pivGP = (pivP == null?null:pivP.parent);
 			//conditionally remove pivP from his parent if he had a parent
 			if(pivGP != null)
 			{
-				if(pivGP.leftTree == pivP)
+				if(pivGP.leftTree == pivP.leftTree)
 				{
 					pivGP.leftTree = pivot;
 				}
@@ -93,17 +94,19 @@ public class BinaryTree
 			BinaryTree pivLT = null;
 			BinaryTree pivP = null;
 			BinaryTree pivGP = null;
+			
 			if(pivot.leftTree != null)
 			{
 				pivLT = pivot.leftTree;
 				pivot.leftTree = null;
 			}
+			
 			pivP = pivot.parent;
-			pivGP = (pivP == null?null:pivP.parent.parent);
+			pivGP = (pivP == null?null:pivP.parent);
 			//conditionally remove pivP from his parent if he had a parent
 			if(pivGP != null)
 			{
-				if(pivGP.leftTree == pivP)
+				if(pivGP.leftTree == pivP.leftTree)
 				{
 					pivGP.leftTree = pivot;
 				}
@@ -339,14 +342,14 @@ public class BinaryTree
 						//the right tree is out of balance
 						this.rightTree.rotateRight(this.rightTree.leftTree);
 						//attempt at missing line
-						this.rightTree.rotateLeft(this);
+						this.rightTree.rotateLeft(this.rightTree);
 					}
 					else if(this.rightTree == null)
 					{
 						//the left tree is out of balance
 						this.leftTree.rotateLeft(this.leftTree.rightTree);
 						//attempt at missing line
-						this.leftTree.rotateRight(this);
+						this.leftTree.rotateRight(this.leftTree);
 					}
 					else
 					{
@@ -355,14 +358,14 @@ public class BinaryTree
 						{
 							this.leftTree.rotateLeft(this.leftTree.rightTree);
 							//missing a line
-							this.leftTree.rotateRight(this);
+							this.leftTree.rotateRight(this.leftTree);
 							
 						}
 						else
 						{
 							this.rightTree.rotateRight(this.rightTree.leftTree);
 							//missing a line
-							this.rightTree.rotateLeft(this);
+							this.rightTree.rotateLeft(this.rightTree);
 						}
 					}
 				}
