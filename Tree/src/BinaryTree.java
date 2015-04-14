@@ -54,7 +54,7 @@ public class BinaryTree
 			{
 				if(pivGP.leftTree == pivP.leftTree)
 				{
-					pivGP.leftTree = pivot;
+					pivGP.leftTree = pivot.leftTree;
 				}
 				else
 				{
@@ -108,7 +108,7 @@ public class BinaryTree
 			{
 				if(pivGP.leftTree == pivP.leftTree)
 				{
-					pivGP.leftTree = pivot;
+					pivGP.leftTree = pivot.leftTree;
 				}
 				else
 				{
