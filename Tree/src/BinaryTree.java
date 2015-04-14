@@ -47,7 +47,7 @@ public class BinaryTree
 				pivot.rightTree = null;
 			}
 			pivP = pivot.parent;
-			pivGP = (pivP == null?null:pivP.parent);
+			pivGP = (pivP == null?null:pivP.parent.parent);
 			//conditionally remove pivP from his parent if he had a parent
 			if(pivGP != null)
 			{
@@ -99,7 +99,7 @@ public class BinaryTree
 				pivot.leftTree = null;
 			}
 			pivP = pivot.parent;
-			pivGP = (pivP == null?null:pivP.parent);
+			pivGP = (pivP == null?null:pivP.parent.parent);
 			//conditionally remove pivP from his parent if he had a parent
 			if(pivGP != null)
 			{
@@ -339,14 +339,14 @@ public class BinaryTree
 						//the right tree is out of balance
 						this.rightTree.rotateRight(this.rightTree.leftTree);
 						//attempt at missing line
-						this.rightTree.rotateLeft();
+						this.rightTree.rotateLeft(this);
 					}
 					else if(this.rightTree == null)
 					{
 						//the left tree is out of balance
 						this.leftTree.rotateLeft(this.leftTree.rightTree);
 						//attempt at missing line
-						this.leftTree.rotateRight();
+						this.leftTree.rotateRight(this);
 					}
 					else
 					{
@@ -355,14 +355,14 @@ public class BinaryTree
 						{
 							this.leftTree.rotateLeft(this.leftTree.rightTree);
 							//missing a line
-							this.leftTree.rotateRight();
+							this.leftTree.rotateRight(this);
 							
 						}
 						else
 						{
 							this.rightTree.rotateRight(this.rightTree.leftTree);
 							//missing a line
-							this.rightTree.rotateLeft();
+							this.rightTree.rotateLeft(this);
 						}
 					}
 				}
