@@ -52,9 +52,9 @@ public class BinaryTree
 			//conditionally remove pivP from his parent if he had a parent
 			if(pivGP != null)
 			{
-				if(pivGP.leftTree == pivP.leftTree)
+				if(pivGP.leftTree == pivP.rightTree)
 				{
-					pivGP.leftTree = pivot.leftTree;
+					pivGP.leftTree = pivot.rightTree;
 				}
 				else
 				{
@@ -106,9 +106,9 @@ public class BinaryTree
 			//conditionally remove pivP from his parent if he had a parent
 			if(pivGP != null)
 			{
-				if(pivGP.leftTree == pivP.leftTree)
+				if(pivGP.leftTree == pivP.rightTree)
 				{
-					pivGP.leftTree = pivot.leftTree;
+					pivGP.leftTree = pivot.rightTree;
 				}
 				else
 				{
