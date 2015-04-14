@@ -48,7 +48,15 @@ public class BinaryTree
 				pivot.rightTree = null;
 			}
 			pivP = pivot.parent;
-			pivGP = (pivP == null?null:pivP.parent);
+			//pivGP = (pivP == null?null:pivP.parent);
+			if(pivP == null)
+			{
+				pivGP = null;
+			}
+			else
+			{
+				pivGP = pivP.parent;
+			}
 			//conditionally remove pivP from his parent if he had a parent
 			if(pivGP != null)
 			{
@@ -102,7 +110,15 @@ public class BinaryTree
 			}
 			
 			pivP = pivot.parent;
-			pivGP = (pivP == null?null:pivP.parent);
+			//pivGP = (pivP == null?null:pivP.parent);
+			if(pivP == null)
+			{
+				pivGP = null;
+			}
+			else
+			{
+				pivGP = pivP.parent;
+			}
 			//conditionally remove pivP from his parent if he had a parent
 			if(pivGP != null)
 			{
