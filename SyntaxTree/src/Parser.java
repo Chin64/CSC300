@@ -78,6 +78,7 @@ public class Parser
 	private void parse_math_expr()
 	{
 		String mathExpression = new String();
+		String temp = new String();
 		String left = new String();
 		String operator = new String();
 		String right = new String();
@@ -99,34 +100,33 @@ public class Parser
 		for(int i = pos+1; i < theStmt.length(); i++)
 		{
 
+			if(theStmt.charAt(i) == '(')
 			{
-				if(theStmt.charAt(i) == '(')
+				left = left + theStmt.charAt(i);
+				pos = i;
+			}
+			else if(theStmt.charAt(i) != ')')
+			{
+				left = left + theStmt.charAt(i);
+				pos = i;
+			}
+			else if (theStmt.charAt(i) == ')')
+			{
+				left = left + theStmt.charAt(i);
+				pos = i;
+				break;
+			}
+
+			else if(theStmt.charAt(i) != '(')
+			{
+				if(theStmt.charAt(i) != '+' || theStmt.charAt(i) != '-' || theStmt.charAt(i) != '*' || theStmt.charAt(i) != '/' || theStmt.charAt(i) != '%')
 				{
 					left = left + theStmt.charAt(i);
-					pos = i;
-				}
-				else if(theStmt.charAt(i) != ')')
-				{
-					left = left + theStmt.charAt(i);
-					pos = i;
-				}
-				else if (theStmt.charAt(i) == ')')
-				{
-					left = left + theStmt.charAt(i);
-					pos = i;
+					pos++;
 					break;
 				}
-
-				else if(theStmt.charAt(i) != '(')
-				{
-					if(theStmt.charAt(i) != '+' || theStmt.charAt(i) != '-' || theStmt.charAt(i) != '*' || theStmt.charAt(i) != '/' || theStmt.charAt(i) != '%')
-					{
-						left = left + theStmt.charAt(i);
-						pos++;
-						break;
-					}
-				}
 			}
+
 		}
 
 		for(int i = pos; i < theStmt.length();i++)
@@ -144,6 +144,52 @@ public class Parser
 		{
 			right = right + theStmt.charAt(i);
 			pos++;
+		}
+		
+		
+		for(int i = 2; i < theStmt.length(); i++)
+		{
+			if(theStmt.charAt(i) == '(' || theStmt.charAt(i) == ')')
+			{
+				break;
+			}
+			else
+			{
+				left = "";
+				
+				if(theStmt.charAt(i) != '+' || theStmt.charAt(i) != '-' || theStmt.charAt(i) != '*' || theStmt.charAt(i) != '/' || theStmt.charAt(i) != '%')
+				{
+					left = left + theStmt.charAt(i);
+					pos = i;
+					break;
+				}
+			}
+		}
+		for(int i = 2; i < theStmt.length(); i++)
+		{
+			if(theStmt.charAt(i) == '(' || theStmt.charAt(i) == ')')
+			{
+				break;
+			}
+			else if(theStmt.charAt(i) == '+' || theStmt.charAt(i) == '-' || theStmt.charAt(i) == '*' || theStmt.charAt(i) == '/' || theStmt.charAt(i) == '%')
+			{
+				operator = operator + theStmt.charAt(i);
+				pos = i;
+				break;
+			}
+		}
+		for(int i = pos+1; i < theStmt.length();)
+		{
+			if(theStmt.charAt(i) == '(' || theStmt.charAt(i) == ')')
+			{
+				break;
+			}
+			else 
+			{
+				right = right + theStmt.charAt(i);
+				pos = i;
+				break;
+			}
 		}
 		
 		if(left.length() > 0)
