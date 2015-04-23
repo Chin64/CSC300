@@ -34,7 +34,7 @@ public class Parser
 	
 	private void parse_stmt()
 	{
-		//System.out.println(theStmt);
+		System.out.println("Starting Formula: " + theStmt);
 		String var = new String();
 		String mathExpression = new String();
 		
