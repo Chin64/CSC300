@@ -98,21 +98,34 @@ public class Parser
 		
 		for(int i = pos+1; i < theStmt.length(); i++)
 		{
-			if(theStmt.charAt(i) == '(')
+
 			{
-				left = left + theStmt.charAt(i);
-				pos = i;
-			}
-			else if(theStmt.charAt(i) != ')')
-			{
-				left = left + theStmt.charAt(i);
-				pos = i;
-			}
-			else if (theStmt.charAt(i) == ')')
-			{
-				left = left + theStmt.charAt(i);
-				pos = i;
-				break;
+				if(theStmt.charAt(i) == '(')
+				{
+					left = left + theStmt.charAt(i);
+					pos = i;
+				}
+				else if(theStmt.charAt(i) != ')')
+				{
+					left = left + theStmt.charAt(i);
+					pos = i;
+				}
+				else if (theStmt.charAt(i) == ')')
+				{
+					left = left + theStmt.charAt(i);
+					pos = i;
+					break;
+				}
+
+				else if(theStmt.charAt(i) != '(')
+				{
+					if(theStmt.charAt(i) != '+' || theStmt.charAt(i) != '-' || theStmt.charAt(i) != '*' || theStmt.charAt(i) != '/' || theStmt.charAt(i) != '%')
+					{
+						left = left + theStmt.charAt(i);
+						pos++;
+						break;
+					}
+				}
 			}
 		}
 
@@ -144,11 +157,7 @@ public class Parser
 		if(right.length() > 0)
 		{
 			System.out.println("Reading Right: " + right);
-		}
-		
-		
-		
-		
+		}		
 		//Display
 		//Reading Left:
 		//Read OP = *
