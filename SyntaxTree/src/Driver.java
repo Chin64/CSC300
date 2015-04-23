@@ -7,5 +7,6 @@ public class Driver
 		Parser p2 = new Parser("     a = b - c;");
 
 		p.parse();
+		//p2.parse();
 	}
 }

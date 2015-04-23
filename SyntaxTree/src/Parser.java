@@ -57,10 +57,16 @@ public class Parser
 			{
 				mathExpression = mathExpression + theStmt.charAt(i);
 			}
+			else
+			{
+				break;
+			}
 		}
 		
 		System.out.println("Read Variable Name: " + var);
-		System.out.println("Read Math Expression: " + mathExpression);
+		System.out.println("Read Math Expression: " + mathExpression + "\n");
+		
+		this.parse_math_expr();
 		//Print each time it reads something like:
 		// Read: VarName = a
 		// Reading: Math-Expr
@@ -71,6 +77,78 @@ public class Parser
 	
 	private void parse_math_expr()
 	{
+		String mathExpression = new String();
+		String left = new String();
+		String operator = new String();
+		String right = new String();
+		
+		for(int i = pos+1; i < theStmt.length(); i++)
+		{
+			if(theStmt.charAt(i) != ';')
+			{
+				mathExpression = mathExpression + theStmt.charAt(i);
+			}
+			else
+			{
+				break;
+			}
+		}
+		
+		System.out.println("Reading Math Expression: " + mathExpression);
+		
+		for(int i = pos+1; i < theStmt.length(); i++)
+		{
+			if(theStmt.charAt(i) == '(')
+			{
+				left = left + theStmt.charAt(i);
+				pos = i;
+			}
+			else if(theStmt.charAt(i) != ')')
+			{
+				left = left + theStmt.charAt(i);
+				pos = i;
+			}
+			else if (theStmt.charAt(i) == ')')
+			{
+				left = left + theStmt.charAt(i);
+				pos = i;
+				break;
+			}
+		}
+
+		for(int i = pos; i < theStmt.length();i++)
+		{
+			
+			if(theStmt.charAt(i) == '+' || theStmt.charAt(i) == '-' || theStmt.charAt(i) == '*' || theStmt.charAt(i) == '/' || theStmt.charAt(i) == '%')
+			{
+				operator = operator + theStmt.charAt(i);
+				pos = i;
+				break;
+			}
+		}
+		
+		for(int i = pos+1; i < theStmt.length(); i++)
+		{
+			right = right + theStmt.charAt(i);
+			pos++;
+		}
+		
+		if(left.length() > 0)
+		{
+			System.out.println("Reading Left: " + left);
+		}
+		if(operator.length() > 0)
+		{
+			System.out.println("Reading Operator: " + operator);
+		}
+		if(right.length() > 0)
+		{
+			System.out.println("Reading Right: " + right);
+		}
+		
+		
+		
+		
 		//Display
 		//Reading Left:
 		//Read OP = *
