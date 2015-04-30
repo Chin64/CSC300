@@ -2,19 +2,19 @@
 public class OpExpression extends Expression
 {
 	
-private String theOp;
+private char theOp;
 	
-	public OpExpression(String theOp)
+	public OpExpression(char theOp)
 	{
 		this.theOp = theOp;
 	}
 
-	public String getTheOp() {
+	public char getTheOp() {
 		return theOp;
 	}
 
-	public void setTheOp(String theOp) {
+	public void setTheOp(char theOp) {
 		this.theOp = theOp;
-	}	
+	}
 	
 }

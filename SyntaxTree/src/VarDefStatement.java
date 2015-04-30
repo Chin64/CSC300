@@ -27,6 +27,4 @@ public class VarDefStatement
 		this.theMathExpr = theMathExpr;
 	}
 	
-	
-	
 }

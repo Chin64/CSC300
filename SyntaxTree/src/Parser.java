@@ -5,10 +5,6 @@ public class Parser
 	private int pos; //where am I in the theStmt string
 	private static final String legalVariableCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "; 
 	private static final String legalOpCharacters = "+-*/% ";
-	private VarExpression var1 = null;
-	private VarDefStatement statement1 = null;
-	private MathExpression Expression1 = null;
-	private OpExpression theOp = null;
 
 	public Parser(String theStmt)
 	{
@@ -20,8 +16,6 @@ public class Parser
 	void parse()
 	{
 		this.parse_stmt();
-		System.out.println("***********");
-		this.SyntaxTree();
 	}
 
 	private String getNextToken(char c)
@@ -59,12 +53,19 @@ public class Parser
 		return token.trim();
 	}
 
-	private void parse_stmt()
+	private VarDefStatement parse_stmt()
 	{
+		VarDefStatement Solution = null;
+		VarExpression theVar = null;
 		//Print each time it reads something like:
 		// Read: VarName = a
 		String varName = this.getNextToken(Parser.legalVariableCharacters);
-		this.var1.setVarName(varName);
+		if(!varName.isEmpty())
+		{
+			theVar.setVarName(varName);
+			Solution.setTheVarExpr(theVar);
+		}
+		
 		System.out.println("Read VarName: " + varName);
 
 		//burn past the =
@@ -77,10 +78,16 @@ public class Parser
 		//burn past the ;
 		this.getNextToken(';');
 		System.out.println("Burned ;");
+		
+		return Solution = null;
 	}
 
-	private void parse_math_expr()
+	private MathExpression parse_math_expr()
 	{
+		MathExpression solution = null;
+		OpExpression theOp = null;
+		
+		
 		String varName = this.getNextToken(Parser.legalVariableCharacters);
 		if(varName.length() == 0)
 		{
@@ -88,6 +95,8 @@ public class Parser
 			this.getNextToken('(');
 			System.out.println("Burned (");
 			this.parse_math_expr();
+			solution.setLeftOperand(this.parse_math_expr());
+			solution.setRightOperand(this.parse_math_expr());
 			this.getNextToken(')');
 			System.out.println("Burned )");
 		}
@@ -96,8 +105,23 @@ public class Parser
 			System.out.println("Read VarName: " + varName);
 		}
 		String op = this.getNextToken(Parser.legalOpCharacters);
-		this.theOp.setTheOp(op);
-		this.Expression1.setOperator(theOp);
+		op.trim();
+		for(int i = 0; i < op.length(); i++)
+		{
+			if(op.length() == 1)
+			{
+				theOp.setTheOp(op.charAt(i));
+			}
+			else
+			{
+				if(op.length() > 1)
+				{
+					op.trim();
+					theOp.setTheOp(op.charAt(0));
+				}
+			}
+		}
+		
 		System.out.println("Read Op: " + op);
 		varName = this.getNextToken(Parser.legalVariableCharacters);
 		if(varName.length() == 0)
@@ -111,11 +135,8 @@ public class Parser
 		{
 			System.out.println("Read VarName: " + varName);
 		}
+		
+		return solution = null;
 	}
 	
-	private void SyntaxTree()
-	{
-	this.statement1.setTheVarExpr(var1);
-	
-	}
 }
