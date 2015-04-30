@@ -1,10 +1,13 @@
 
-public class Parser 
+public class Parser
 {
 	private String theStmt;
 	private int pos; //where am I in the theStmt string
 	private static final String legalVariableCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "; 
 	private static final String legalOpCharacters = "+-*/% ";
+	private VarExpression var1;
+	private VarDefStatement statement1;
+	private MathExpression Expression1;
 
 	public Parser(String theStmt)
 	{
@@ -16,6 +19,8 @@ public class Parser
 	void parse()
 	{
 		this.parse_stmt();
+		System.out.println("***********");
+		this.SyntaxTree();
 	}
 
 	private String getNextToken(char c)
@@ -104,4 +109,13 @@ public class Parser
 		}
 	}
 	
+	private void SyntaxTree()
+	{
+		this.var1 = var1;
+		this.statement1 = statement1;
+		this.Expression1 = Expression1;
+		
+		System.out.println(var1);
+		
+	}
 }
