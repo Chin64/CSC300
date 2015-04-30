@@ -5,7 +5,7 @@ public class Parser
 	private int pos; //where am I in the theStmt string
 	private static final String legalVariableCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "; 
 	private static final String legalOpCharacters = "+-*/% ";
-	private VarExpression var1;
+	private VarExpression var1 = null;
 	private VarDefStatement statement1;
 	private MathExpression Expression1;
 
@@ -63,6 +63,7 @@ public class Parser
 		//Print each time it reads something like:
 		// Read: VarName = a
 		String varName = this.getNextToken(Parser.legalVariableCharacters);
+		this.var1.setVarName(varName);
 		System.out.println("Read VarName: " + varName);
 
 		//burn past the =
@@ -111,11 +112,6 @@ public class Parser
 	
 	private void SyntaxTree()
 	{
-		this.var1 = var1;
-		this.statement1 = statement1;
-		this.Expression1 = Expression1;
-		
 		System.out.println(var1);
-		
 	}
 }
