@@ -6,8 +6,9 @@ public class Parser
 	private static final String legalVariableCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "; 
 	private static final String legalOpCharacters = "+-*/% ";
 	private VarExpression var1 = null;
-	private VarDefStatement statement1;
-	private MathExpression Expression1;
+	private VarDefStatement statement1 = null;
+	private MathExpression Expression1 = null;
+	private OpExpression theOp = null;
 
 	public Parser(String theStmt)
 	{
@@ -95,6 +96,8 @@ public class Parser
 			System.out.println("Read VarName: " + varName);
 		}
 		String op = this.getNextToken(Parser.legalOpCharacters);
+		this.theOp.setTheOp(op);
+		this.Expression1.setOperator(theOp);
 		System.out.println("Read Op: " + op);
 		varName = this.getNextToken(Parser.legalVariableCharacters);
 		if(varName.length() == 0)
@@ -112,6 +115,7 @@ public class Parser
 	
 	private void SyntaxTree()
 	{
-		System.out.println(var1);
+	this.statement1.setTheVarExpr(var1);
+	
 	}
 }
