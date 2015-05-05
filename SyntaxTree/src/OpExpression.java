@@ -8,13 +8,5 @@ private char theOp;
 	{
 		this.theOp = theOp;
 	}
-
-	public char getTheOp() {
-		return theOp;
-	}
-
-	public void setTheOp(char theOp) {
-		this.theOp = theOp;
-	}
 	
 }

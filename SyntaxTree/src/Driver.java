@@ -3,11 +3,9 @@ public class Driver
 {
 	public static void main(String[] args)
 	{
-		Parser p = new Parser("     a =     (a *   b) - c;");
-		Parser p2 = new Parser("     a = b - c;");
-
+		Parser p = new Parser("     apple =     (a *   b) - c;");
 		p.parse();
-		System.out.println("*****");
-		p2.parse();
+		VarDefStatement vds = p.getTheSytaxTree();
+		System.out.println(vds);
 	}
 }

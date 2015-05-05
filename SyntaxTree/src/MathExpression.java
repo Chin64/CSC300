@@ -11,31 +11,5 @@ public class MathExpression extends Expression
 		this.rightOperand = rightOperand;
 		this.operator = operator;
 	}
-
-	public Expression getLeftOperand() {
-		return leftOperand;
-	}
-
-	public void setLeftOperand(Expression leftOperand) {
-		this.leftOperand = leftOperand;
-	}
-
-	public Expression getRightOperand() {
-		return rightOperand;
-	}
-
-	public void setRightOperand(Expression rightOperand) {
-		this.rightOperand = rightOperand;
-	}
-
-	public OpExpression getOperator() {
-		return operator;
-	}
-
-	public void setOperator(OpExpression operator) {
-		this.operator = operator;
-	}
-
-	
 	
 }

@@ -1,7 +1,7 @@
 
 public class VarDefStatement 
 {
-	
+
 	private VarExpression theVarExpr;
 	private MathExpression theMathExpr;
 	
@@ -10,21 +10,11 @@ public class VarDefStatement
 		this.theVarExpr = theVarExpr;
 		this.theMathExpr = theMathExpr;
 	}
-
-	public VarExpression getTheVarExpr() {
-		return theVarExpr;
-	}
-
-	public void setTheVarExpr(VarExpression theVarExpr) {
-		this.theVarExpr = theVarExpr;
-	}
-
-	public MathExpression getTheMathExpr() {
-		return theMathExpr;
-	}
-
-	public void setTheMathExpr(MathExpression theMathExpr) {
-		this.theMathExpr = theMathExpr;
-	}
 	
+	public String toString()
+	{
+		//write this such that it rebuilds the String version
+		//of the original statement.  You MAY NOT just use the
+		//store string variable theStmt.
+	}
 }
