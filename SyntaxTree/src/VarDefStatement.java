@@ -16,5 +16,7 @@ public class VarDefStatement
 		//write this such that it rebuilds the String version
 		//of the original statement.  You MAY NOT just use the
 		//store string variable theStmt.
+		
+		return theVarExpr.toString() + "=" + theMathExpr.toString() + ";";
 	}
 }

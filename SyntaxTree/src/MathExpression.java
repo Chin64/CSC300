@@ -12,4 +12,16 @@ public class MathExpression extends Expression
 		this.operator = operator;
 	}
 	
+	public String toString()
+	{
+		if(leftOperand != null)
+		{
+			return "(" + leftOperand.toString() + ")" + operator.toString() + rightOperand.toString();
+		}
+		if(rightOperand != null)
+		{
+			return leftOperand.toString() + operator.toString() + rightOperand.toString() ;
+		}
+		return leftOperand.toString() + operator.toString()+ rightOperand.toString();
+	}
 }

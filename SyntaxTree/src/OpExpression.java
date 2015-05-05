@@ -9,4 +9,8 @@ private char theOp;
 		this.theOp = theOp;
 	}
 	
+	public String toString()
+	{
+		return "" + theOp;
+	}
 }
